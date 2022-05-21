@@ -17,7 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
-//import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
@@ -55,7 +55,7 @@ import { PageNotFoundComponent } from './Components/page-not-found/page-not-foun
     MatSidenavModule,
     MatListModule,
     MatCardModule,
-    //FormsModule,
+    FormsModule,
     MatTooltipModule,
     MatDialogModule,
     MatMenuModule

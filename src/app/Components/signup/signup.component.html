@@ -5,7 +5,6 @@
             <p class="text">Online Book Shopping</p>
         </div>
     </div>
-
     <div class="reg-container">
         <div class="form-head" fxLayoutAlign="space-between">
             <div fxLayout="column" fxLayoutAlign="start center">
@@ -20,7 +19,7 @@
         <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
 
             <div class="form-group">
-                <mat-label>Full Name</mat-label>
+                <mat-label >Full Name</mat-label>
                 <mat-form-field appearance="outline" >
                     <input matInput type="text" placeholder="Full Name" formControlName="fullName">
                     <mat-error>Full Name is required</mat-error>
@@ -30,7 +29,7 @@
             <div class="form-group">
                 <mat-label>Email Id</mat-label>
                 <mat-form-field appearance="outline" >
-                    <input matInput type="email" placeholder="Email" formControlName="email">
+                    <input matInput type="email" placeholder="Email" formControlName="email" >
                     <mat-error>Email is required</mat-error>
                 </mat-form-field>
             </div>
