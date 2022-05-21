@@ -103,6 +103,11 @@ mat-form-field mat-error{
     background-color: #A03037;
 }
 
+::ng-deep .snackbar-green{
+    background-color:#72d18b;
+    color: black;
+}
+
 @media (max-width: 959.5px) {
     .reg-container{
         margin-left: 0px;
@@ -111,11 +116,14 @@ mat-form-field mat-error{
 @media (max-width: 475px) {
     .reg-layout{
         background: none;
+        // padding-top: 50px;
     }
     .reg-container{
         background: none;
         box-shadow: none;
         border: none;
         border-radius: 0px;
+        // height: 100%;
+        margin-top: -80px;
     }
 }
