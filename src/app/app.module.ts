@@ -28,6 +28,8 @@ import { LoginComponent } from './Components/login/login.component';
 import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
+import { GetallbooksComponent } from './Components/getallbooks/getallbooks.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { PageNotFoundComponent } from './Components/page-not-found/page-not-foun
     LoginComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DashboardComponent,
+    GetallbooksComponent
   ],
   imports: [
     BrowserModule,
