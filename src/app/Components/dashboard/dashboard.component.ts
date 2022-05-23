@@ -7,17 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
   search : any;
-  c: boolean=false;
+  cancel: boolean=false;
+  fullName : any='Profile';
   
   constructor() { }
 
   ngOnInit(): void {
+    this.fullName = localStorage.getItem('name');
   }
 
   searchNote(event:any){
-  this.c = true;
-  if(this.search==''){
-    this.c = false;
+  this.cancel = true;
+  if(this.search==(''||undefined)){
+    this.cancel = false;
     
   }
 
@@ -25,6 +27,6 @@ export class DashboardComponent implements OnInit {
 
   searchClear(){
     this.search = '';
-    this.c = false;
+    this.cancel = false;
   }
 }

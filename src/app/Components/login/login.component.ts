@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("token",response.data.token);
             localStorage.setItem("name",response.data.fullName);
             localStorage.setItem("email",response.data.emailId);
-            //this.router.navigateByUrl('/home')
+            this.router.navigateByUrl('/home/books')
 
             this._snackBar.open('Logged in successfully', '', {
                 duration: 3000,
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("token",response.data.token);
           localStorage.setItem("name",response.data.fullName);
           localStorage.setItem("email",response.data.emailId);
-          //this.router.navigateByUrl('/home')
+          this.router.navigateByUrl('/home')
 
           this._snackBar.open('Admin Logged in successfully', '', {
               duration: 3000,

@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatSelectModule} from '@angular/material/select';
 
 
 import { SignupComponent } from './Components/signup/signup.component';
@@ -62,7 +63,8 @@ import { GetallbooksComponent } from './Components/getallbooks/getallbooks.compo
     FormsModule,
     MatTooltipModule,
     MatDialogModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

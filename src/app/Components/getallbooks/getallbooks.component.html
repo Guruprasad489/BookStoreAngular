@@ -1,1 +1,45 @@
-<p>getallbooks works!</p>
+<div class="layout">
+     <div fxLayout="row" fxLayoutAlign="space-between center">   
+        <div fxLayout="row" fxLayoutAlign="start center" class="bookHead">
+            <span style="font-size: 22px; font-weight: 500;">Books</span>
+            <span class="booksCount">({{bookList?.length}} items)</span>
+        </div>
+        <mat-form-field appearance="outline">
+            <mat-label>{{sortBy}}</mat-label>
+                <mat-select>
+                    <mat-option (click)="relevence()">Sort by relevence</mat-option>
+                    <mat-option (click)="PriceLowToHigh()">Price -- Low to High</mat-option>
+                    <mat-option (click)="PriceHighToLow()">Price -- High to low</mat-option>
+                    <mat-option (click)="newestFirst()">newest First</mat-option>
+                </mat-select>
+        </mat-form-field>
+     </div>
+
+    <div class="display-books">
+        <mat-card class="book" *ngFor="let book of bookList" [style.background]="book.quantity==0? '#e9ecef' : 'white'">
+            <div class="book-image" fxLayout="column" fxLayoutAlign="center center" [style.background]="book.quantity==0? '#dee2e6' : '#F5F5F5'">
+                <img [src]="book.bookImage==('string'||''||null||undefined)? defaultImage : book.bookImage" width="125px" height="170px">
+                <span class="outOfStock" *ngIf="book.quantity==0">OUT OF STOCK</span>
+                <span class="quickView" *ngIf="book.quantity!=0">QUICK VIEW</span>
+            </div>
+    
+            <div class="book-details" fxLayout="column" fxLayoutAlign="start start">
+                <span class="bookName">{{book.bookName}}</span>
+                <span class="author">by {{book.author}}</span>
+                <div  fxLayout="row" fxLayoutAlign="center center" style="    margin-bottom: 3px;">
+                    <div class="rating" fxLayout="row" fxLayoutAlign="center center">
+                    <span fxLayoutAlign="center center" style="padding-top: 2px; margin-right: 2px;">{{book.rating}}</span>
+                    <img src="/assets/star_rate.svg" width="12px">
+                    </div>
+                    <span class="ratingCount">({{book.ratingCount}})</span>
+                </div>
+                <div  fxLayout="row" >
+                    <span class="discountPrice">Rs. {{book.discountPrice}}</span>
+                    <span class="actualPrice">Rs. {{book.actualPrice}}</span>
+                    <span class="discount">{{((book.actualPrice-book.discountPrice)/book.actualPrice)*100 | number:'1.1-1'}}% off</span>
+                </div>
+            </div>
+    
+        </mat-card>
+    </div>
+</div>

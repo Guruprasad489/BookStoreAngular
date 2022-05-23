@@ -1,37 +1,39 @@
-<mat-toolbar fxLayoutAlign="space-between center">
-    <div fxLayoutAlign="center center">
-        <img src="/assets/education.svg" style="margin: 0px 10px;">
-        <span style="color: #FFFFFF;">Book Store</span>
+<div class="container">
+    <mat-toolbar fxLayoutAlign="space-between center">
+        <div fxLayoutAlign="center center">
+            <img src="/assets/education.svg" style="margin: 0px 10px;">
+            <span style="color: #FFFFFF;">Book Store</span>
+        </div>
+
+        <mat-form-field class="search" appearance="outline" fxHide fxShow.gt-xs >
+            <input matInput class="search" type="search" placeholder="Search..." [(ngModel)]="search" (keyup)="searchNote($event)" >
+            <span mat-icon-button matPrefix><img src="/assets/Search-icon.svg"></span>
+            <span mat-icon-button matSuffix type="button" [style]="cancel==true? 'opacity:1' : 'opacity: 0'" (click)="searchClear()"><img src="/assets/Cancel-Search.svg"></span>
+        </mat-form-field>
+
+        <div fxLayout="row">
+            <button class="icons" mat-flat-button>
+                <div fxLayout="column" fxLayoutAlign="center center">
+                    <img src="/assets/person.svg" style="margin: 0px 10px;" width="24px" height="24px">
+                    <span fxLayoutAlign="center center">{{fullName == '' ? "Profile" : fullName}}</span>
+                </div>
+            </button>
+
+            <button class="icons" mat-flat-button>
+                <div fxLayout="column" fxLayoutAlign="center center">
+                    <img src="/assets/cart.svg" style="margin: 0px 10px;" width="24px" height="24px">
+                    <span fxLayoutAlign="center center">Cart</span>
+                </div>
+            </button>
+        </div>
+    </mat-toolbar>
+
+    <div style=" margin: 10px;">
+        <router-outlet></router-outlet>
     </div>
 
-    <mat-form-field class="search" appearance="outline" fxHide fxShow.gt-xs >
-        <input matInput class="search" type="search" placeholder="Search..." [(ngModel)]="search" (keyup)="searchNote($event)" >
-        <span mat-icon-button matPrefix><img src="/assets/Search-icon.svg"></span>
-        <span mat-icon-button matSuffix type="button" [style]="c==true? 'opacity:1' : 'opacity: 0'" (click)="searchClear()"><img src="/assets/Cancel-Search.svg"></span>
-    </mat-form-field>
-
-    <div fxLayout="row">
-        <button class="icons" mat-flat-button>
-            <div fxLayout="column">
-                <img src="/assets/person.svg" style="margin: 0px 10px;" width="24px" height="24px">
-                <span fxLayoutAlign="center center">Profile</span>
-            </div>
-        </button>
-
-        <button class="icons" mat-flat-button>
-            <div fxLayout="column">
-                <img src="/assets/cart.svg" style="margin: 0px 10px;" width="24px" height="24px">
-                <span fxLayoutAlign="center center">Cart</span>
-            </div>
-        </button>
-    </div>
-</mat-toolbar>
-
-<div style="height: calc((100%) - 114px);">
-    <router-outlet></router-outlet>
+    <footer>
+        <span>Copyright © 2022, Bookstore Private Limited. All Rights Reserved</span>
+    </footer>
 </div>
-
-<footer>
-    <span>Copyright © 2022, Bookstore Private Limited. All Rights Reserved</span>
-</footer>
 
