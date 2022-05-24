@@ -62,7 +62,37 @@ footer{
     margin-top: auto;
 }
 
-@media (max-width: 760px) {
+.profile{
+    margin: 10px 10px;
+}
+.profile-g{
+    color: #878787;
+    margin: 10px 10px;
+    display: flex;
+    flex-direction: row;
+}
+.profile-g img{
+    margin: 0px 5px;
+}
+.login{
+    padding: 0px 36px; 
+    margin: 5px 10px;
+    border: 1px solid #A03037;
+    color: #A03037;
+}
+.logout{
+    padding: 0px 36px; 
+    margin: 10px 10px;
+    border: 1px solid #A03037;
+    color: #A03037;
+}
+
+@media (max-width: 900px) {
+    mat-toolbar{
+        padding: 0% 0%;
+    }
+}
+@media (max-width: 811px) {
     mat-toolbar{
         padding: 0% 0%;
     }
@@ -71,4 +101,5 @@ footer{
         margin-right: 5%;
     }
 }
+
 

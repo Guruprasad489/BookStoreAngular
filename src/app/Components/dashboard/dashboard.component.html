@@ -1,11 +1,11 @@
 <div class="container">
     <mat-toolbar fxLayoutAlign="space-between center">
-        <div fxLayoutAlign="center center">
+        <div fxLayoutAlign="center center" routerLink="/home/books">
             <img src="/assets/education.svg" style="margin: 0px 10px;">
             <span style="color: #FFFFFF;">Book Store</span>
         </div>
 
-        <mat-form-field class="search" appearance="outline" fxHide fxShow.gt-xs >
+        <mat-form-field class="search" appearance="outline" fxHide fxShow.gt-xs>
             <input matInput class="search" type="search" placeholder="Search..." [(ngModel)]="search" (keyup)="searchNote($event)" >
             <span mat-icon-button matPrefix><img src="/assets/Search-icon.svg"></span>
             <span mat-icon-button matSuffix type="button" [style]="cancel==true? 'opacity:1' : 'opacity: 0'" (click)="searchClear()"><img src="/assets/Cancel-Search.svg"></span>
@@ -13,10 +13,25 @@
 
         <div fxLayout="row">
             <button class="icons" mat-flat-button>
-                <div fxLayout="column" fxLayoutAlign="center center">
+                <div fxLayout="column" fxLayoutAlign="center center" [matMenuTriggerFor]="fullName==(''||undefined)? noprofile : profile">
                     <img src="/assets/person.svg" style="margin: 0px 10px;" width="24px" height="24px">
-                    <span fxLayoutAlign="center center">{{fullName == '' ? "Profile" : fullName}}</span>
+                    <span fxLayoutAlign="center center">{{fullName == (''||null||undefined) ? "Profile" : fullName}}</span>
                 </div>
+                <mat-menu #profile="matMenu" >
+                    <span class="profile"><b>Hello {{fullName}},</b></span>
+                    <div class="profile-g"><img src="/assets/person-g.svg" width="20px" height="20px"><span>Profile</span></div>
+                    <div class="profile-g"><img src="/assets/orders-gray.svg" width="18px" height="18px"><span>My Orders</span></div>
+                    <div class="profile-g"><img src="/assets/favorite-gray.svg" width="20px" height="20px"><span>My Wishlist</span></div>
+                    <button class="logout" mat-stroked-button color="warn" (click)="logOut()">Logout</button>
+                </mat-menu>
+                <mat-menu #noprofile="matMenu" >
+                    <span class="profile"><b>Welcome</b></span>
+                    <div class="profile-g"><span>To acsess account and manage orders</span></div>
+                    <button class="login" mat-stroked-button color="warn" (click)="login()">LOGIN/SIGNUP</button>
+                    <hr class="profile-g">
+                    <div class="profile-g"><img src="/assets/orders-gray.svg" width="18px" height="18px"><span>My Orders</span></div>
+                    <div class="profile-g"><img src="/assets/favorite-gray.svg" width="20px" height="20px"><span>My Wishlist</span></div>
+                </mat-menu>
             </button>
 
             <button class="icons" mat-flat-button>

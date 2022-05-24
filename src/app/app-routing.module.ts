@@ -15,9 +15,7 @@ const routes: Routes = [
   {path:'reset-password/:token',component:ResetPasswordComponent},
   {path: 'home', component: DashboardComponent,
    children:[{path: 'books', component: GetallbooksComponent},
-   {path:'', redirectTo:'/home/books', pathMatch:'full' }
-
-  ]
+   {path:'', redirectTo:'/home/books', pathMatch:'full' }]
 },
   
   {path: '', redirectTo: '/login', pathMatch: 'full'},
