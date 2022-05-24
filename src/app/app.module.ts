@@ -22,6 +22,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 import { SignupComponent } from './Components/signup/signup.component';
@@ -31,6 +32,7 @@ import { ResetPasswordComponent } from './Components/reset-password/reset-passwo
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { GetallbooksComponent } from './Components/getallbooks/getallbooks.component';
+import { QuickviewComponent } from './Components/quickview/quickview.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { GetallbooksComponent } from './Components/getallbooks/getallbooks.compo
     ResetPasswordComponent,
     PageNotFoundComponent,
     DashboardComponent,
-    GetallbooksComponent
+    GetallbooksComponent,
+    QuickviewComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ import { GetallbooksComponent } from './Components/getallbooks/getallbooks.compo
     MatTooltipModule,
     MatDialogModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

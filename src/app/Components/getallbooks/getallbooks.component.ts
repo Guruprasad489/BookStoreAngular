@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BookService } from 'src/app/Services/BookService/book.service';
 
 @Component({
@@ -8,11 +9,10 @@ import { BookService } from 'src/app/Services/BookService/book.service';
 })
 export class GetallbooksComponent implements OnInit {
   bookList: any;
-  newest = false;
   defaultImage= "https://res.cloudinary.com/guruprasad489/image/upload/v1653326452/BookStore/default_book_cover_2015_fiqpmu.jpg";
   sortBy:any="Sort by relevence";
 
-  constructor(private bookService : BookService) { }
+  constructor(private bookService : BookService, private router:Router) { }
 
   ngOnInit(): void {
     this.getAllBooks();
@@ -45,5 +45,9 @@ export class GetallbooksComponent implements OnInit {
   newestFirst(){
      this.bookList = this.bookList.sort((x: any, y: any) => y.bookId - x.bookId);
      this.sortBy="newest First";
+  }
+
+  quickView(bookId:any){
+    this.router.navigateByUrl('/home/quickview/' + bookId);
   }
 }

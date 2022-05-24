@@ -21,6 +21,17 @@ export class BookService {
     return this.httpService.getService('Book/GetAll', true, header);
   }
 
+  quickView(id: any) {
+    // console.log(id)
+    let header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': `Bearer ${this.token}`
+      })
+    }
+    return this.httpService.getService('Book/GetBookById?bookId=' +id, true, header);
+  }
+
   addBook(reqData: any) {
     // console.log(reqData)
     let header = {

@@ -17,13 +17,13 @@
 
     <div class="display-books">
         <mat-card class="book" *ngFor="let book of bookList" [style.background]="book.quantity==0? '#e9ecef' : 'white'">
-            <div class="book-image" fxLayout="column" fxLayoutAlign="center center" [style.background]="book.quantity==0? '#dee2e6' : '#F5F5F5'">
+            <div class="book-image" fxLayout="column" fxLayoutAlign="center center" [style.background]="book.quantity==0? '#dee2e6' : '#F5F5F5'" (click)="quickView(book.bookId)">
                 <img [src]="book.bookImage==('string'||''||null||undefined)? defaultImage : book.bookImage" width="125px" height="170px">
                 <span class="outOfStock" *ngIf="book.quantity==0">OUT OF STOCK</span>
                 <span class="quickView" *ngIf="book.quantity!=0">QUICK VIEW</span>
             </div>
     
-            <div class="book-details" fxLayout="column" fxLayoutAlign="start start">
+            <div class="book-details" fxLayout="column" fxLayoutAlign="start start" (click)="quickView(book.bookId)">
                 <span class="bookName">{{book.bookName}}</span>
                 <span class="author">by {{book.author}}</span>
                 <div  fxLayout="row" fxLayoutAlign="center center" style="    margin-bottom: 3px;">
@@ -38,6 +38,11 @@
                     <span class="actualPrice">Rs. {{book.actualPrice}}</span>
                     <span class="discount">{{((book.actualPrice-book.discountPrice)/book.actualPrice)*100 | number:'1.1-1'}}% off</span>
                 </div>
+            </div>
+
+            <div fxLayoutAlign="space-between center" class="buttons">
+                <button class="bag" mat-flat-button>ADD TO BAG</button>
+                <button class="wishlist" mat-flat-button><img src="/assets/favorite_white_24dp.svg" width="18px" height="18px"> WISHLIST</button>
             </div>
     
         </mat-card>

@@ -5,6 +5,7 @@ import { ForgotPasswordComponent } from './Components/forgot-password/forgot-pas
 import { GetallbooksComponent } from './Components/getallbooks/getallbooks.component';
 import { LoginComponent } from './Components/login/login.component';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
+import { QuickviewComponent } from './Components/quickview/quickview.component';
 import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
 import { SignupComponent } from './Components/signup/signup.component';
 
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path:'reset-password/:token',component:ResetPasswordComponent},
   {path: 'home', component: DashboardComponent,
    children:[{path: 'books', component: GetallbooksComponent},
-   {path:'', redirectTo:'/home/books', pathMatch:'full' }]
+   {path:'', redirectTo:'/home/books', pathMatch:'full' },
+   {path: 'quickview/:bookId', component: QuickviewComponent}]
 },
   
   {path: '', redirectTo: '/login', pathMatch: 'full'},
