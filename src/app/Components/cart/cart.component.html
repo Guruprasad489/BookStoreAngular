@@ -1,0 +1,82 @@
+<div class="layout">
+
+    <!-- <mat-accordion class="example-headers-align"> -->
+        <div class="example-headers-align">
+
+            <mat-expansion-panel [expanded]="true" (opened)="setStep(0)" hideToggle>
+                <mat-expansion-panel-header  #panelH (click)="panelH._toggle()">
+                    <mat-panel-title>My Cart({{cartList?.length}})</mat-panel-title>
+                    <mat-panel-description>
+                        <mat-form-field appearance="outline" style="margin-bottom: -15px;">
+                            <mat-label style="font-size: 13px;">Bridgelabz Solution LLP</mat-label>
+                            <mat-select>
+                                <!-- <mat-option></mat-option> -->
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div class="cartItem" *ngFor="let cart of cartList">
+                    <div>
+                        <img class="book-image" [src]="cart?.bookImage==('string'||''||null||undefined)? defaultImage : cart?.bookImage" width="110px" height="140px">
+                        <span class="outOfStock" *ngIf="cart?.stock==0">OUT OF STOCK</span>
+                    </div>
+                    <div class="book-details" fxLayout="column" fxLayoutAlign="start start">
+                        <h3 class="bookName">{{cart?.bookName}}</h3>
+                        <span class="author">by {{cart?.author}}</span>
+                        <div fxLayout="row" style="margin-bottom: 10px;">
+                            <div><span class="discountPrice">Rs. {{cart?.discountPrice * cart.booksQty}}</span></div>
+                            <div><span class="actualPrice">Rs. {{cart?.actualPrice * cart.booksQty}}</span></div>
+                            <!-- <div><span class="discount">{{((cart?.actualPrice-cart?.discountPrice)/cart?.actualPrice)*100 | number:'1.1-1'}}% off</span></div> -->
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start center">
+                            <button mat-stroked-button mat-icon-button (click)="decreaseQty(cart.cartId, cart.booksQty)" [disabled]="cart.booksQty==1"><i class="material-icons">&#xe15b;</i></button>
+                            <span class="cartQty">{{cart.booksQty}}</span>
+                            <button mat-stroked-button mat-icon-button (click)="increaseQty(cart.cartId, cart.booksQty)" [disabled]="cart.booksQty==10"><i class="material-icons">&#xe145;</i></button>
+                            <button mat-stroked-button color="warn" (click)="removeFromCart(cart.cartId)" style="margin-left: 25px;"><i class="material-icons">&#xe14c;</i> Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <mat-action-row>
+                    <button mat-flat-button color="primary" (click)="step1()">Place Order</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+            <br>
+        
+            <mat-expansion-panel [expanded]="step >= 1"  hideToggle>
+                <mat-expansion-panel-header  #panelH1 (click)="panelH1._toggle()">
+                    <mat-panel-title>Customer Details</mat-panel-title>
+                    <mat-panel-description>
+                        <button mat-stroked-button style="color:brown">Add New Address</button>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Country</mat-label>
+                    <input matInput>
+                </mat-form-field>
+
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="step0()">Previous</button>
+                    <button mat-flat-button color="primary" (click)="step2()">Continue</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+            <br>
+            
+            <mat-expansion-panel [expanded]="step === 2"  hideToggle>
+                <mat-expansion-panel-header #panelH2 (click)="panelH2._toggle()">
+                    <mat-panel-title >Order Summary</mat-panel-title>
+                    <mat-panel-description>
+                        
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="step1()">Previous</button>
+                    <button mat-flat-button color="primary">Checkout</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+        </div>
+    <!-- </mat-accordion> -->
+
+</div>

@@ -23,6 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 import { SignupComponent } from './Components/signup/signup.component';
@@ -33,6 +34,7 @@ import { PageNotFoundComponent } from './Components/page-not-found/page-not-foun
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { GetallbooksComponent } from './Components/getallbooks/getallbooks.component';
 import { QuickviewComponent } from './Components/quickview/quickview.component';
+import { CartComponent } from './Components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { QuickviewComponent } from './Components/quickview/quickview.component';
     PageNotFoundComponent,
     DashboardComponent,
     GetallbooksComponent,
-    QuickviewComponent
+    QuickviewComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,8 @@ import { QuickviewComponent } from './Components/quickview/quickview.component';
     MatDialogModule,
     MatMenuModule,
     MatSelectModule,
-    MatDividerModule
+    MatDividerModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

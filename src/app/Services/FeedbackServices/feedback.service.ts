@@ -28,9 +28,9 @@ export class FeedbackService {
     let header = {
       headers: new HttpHeaders({
         'Content-type': 'application/json',
-        'Authorization': `Bearer ${this.token}`
+        //'Authorization': `Bearer ${this.token}`
       })
     }
-    return this.httpService.getService('Feedback/GetAll?bookId='+id, true, header);
+    return this.httpService.getService('Feedback/GetAll?bookId='+id, false, header);
   }
 }

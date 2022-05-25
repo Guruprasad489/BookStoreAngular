@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from 'src/app/Services/BookService/book.service';
+import { CartService } from 'src/app/Services/CartServices/cart.service';
 import { FeedbackService } from 'src/app/Services/FeedbackServices/feedback.service';
 
 @Component({
@@ -19,8 +20,8 @@ export class QuickviewComponent implements OnInit {
   userId:any;
   myReview:any;
 
-  constructor(private bookService : BookService,private feedbackService : FeedbackService , private activeRoute: ActivatedRoute, 
-    private _snackBar: MatSnackBar) { 
+  constructor(private bookService : BookService,private feedbackService : FeedbackService, private cartService : CartService , 
+    private activeRoute: ActivatedRoute, private _snackBar: MatSnackBar) { 
       this.userId = localStorage.getItem('userId');
     }
 
@@ -61,6 +62,10 @@ export class QuickviewComponent implements OnInit {
     });
   }
 
+  getShortName(fullName: any) {
+    return fullName.split(' ').map((n: any) => n[0]).join('');
+  }
+
   myFeedback(){
     this.displayFeedback(this.feedbackList);
     if(this.myReview?.length>0){
@@ -75,6 +80,23 @@ export class QuickviewComponent implements OnInit {
         return object.userId == this.userId;
       })
     }
+  }
+
+  addToCart(){
+    let booksQty = 1
+    this.cartService.addToCart(this.book.bookId, booksQty).subscribe((response: any) => {
+      console.log("Added to Cart successfully", response);
+
+      this._snackBar.open('Added to Cart successfully', '', {
+        duration: 3000,
+        verticalPosition: 'bottom'
+    })
+    });
+  }
+  notifyMe(){}
+
+  addToWishlist(){
+
   }
   
 }

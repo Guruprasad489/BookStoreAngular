@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CartComponent } from './Components/cart/cart.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
 import { GetallbooksComponent } from './Components/getallbooks/getallbooks.component';
@@ -17,7 +18,9 @@ const routes: Routes = [
   {path: 'home', component: DashboardComponent,
    children:[{path: 'books', component: GetallbooksComponent},
    {path:'', redirectTo:'/home/books', pathMatch:'full' },
-   {path: 'quickview/:bookId', component: QuickviewComponent}]
+   {path: 'quickview/:bookId', component: QuickviewComponent},
+   {path: 'cart', component: CartComponent}
+  ]
 },
   
   {path: '', redirectTo: '/login', pathMatch: 'full'},
