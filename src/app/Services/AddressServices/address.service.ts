@@ -23,7 +23,7 @@ export class AddressService {
     return this.httpService.postService('Address/Add', reqData, true, header);
   }
 
-  updateAddress(reqData: any, id: any) {
+  updateAddress(reqData: any) {
     // console.log(reqData)
     let header = {
       headers: new HttpHeaders({
@@ -45,7 +45,7 @@ export class AddressService {
     return this.httpService.deleteService(`Address/Delete?addressId=${id}`, true, header);
   }
 
-  getAddressById(typeId: any, addressId:any) {
+  getAddressById(addressId:any) {
     // console.log(id)
     let header = {
       headers: new HttpHeaders({
@@ -53,7 +53,7 @@ export class AddressService {
         'Authorization': `Bearer ${this.token}`
       })
     }
-    return this.httpService.getService(`Address/Get?typeId=${typeId}&addressId=${addressId}`, true, header);
+    return this.httpService.getService(`Address/Get?addressId=${addressId}`, true, header);
   }
 
   getAllAddresses() {

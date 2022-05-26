@@ -5,6 +5,7 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
 import { GetallbooksComponent } from './Components/getallbooks/getallbooks.component';
 import { LoginComponent } from './Components/login/login.component';
+import { OrdersuccessComponent } from './Components/ordersuccess/ordersuccess.component';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { QuickviewComponent } from './Components/quickview/quickview.component';
 import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
    children:[{path: 'books', component: GetallbooksComponent},
    {path:'', redirectTo:'/home/books', pathMatch:'full' },
    {path: 'quickview/:bookId', component: QuickviewComponent},
-   {path: 'cart', component: CartComponent}
+   {path: 'cart', component: CartComponent},
+   {path: 'order-success', component: OrdersuccessComponent}
   ]
 },
   

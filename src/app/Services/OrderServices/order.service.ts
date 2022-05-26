@@ -12,7 +12,7 @@ export class OrderService {
     this.token = localStorage.getItem('token');
   }
 
-  addAddress(reqData: any) {
+  addOrder(reqData: any) {
     // console.log(reqData)
     let header = {
       headers: new HttpHeaders({
@@ -20,10 +20,10 @@ export class OrderService {
         'Authorization': `Bearer ${this.token}`
       })
     }
-    return this.httpService.postService('Orders/Add', reqData, true, header);
+    return this.httpService.postService('Orders/Add', {addressId : reqData}, true, header);
   }
 
-  getAllAddresses() {
+  getAllOrders() {
     let header = {
       headers: new HttpHeaders({
         'Content-type': 'application/json',

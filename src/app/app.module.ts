@@ -37,6 +37,7 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { GetallbooksComponent } from './Components/getallbooks/getallbooks.component';
 import { QuickviewComponent } from './Components/quickview/quickview.component';
 import { CartComponent } from './Components/cart/cart.component';
+import { OrdersuccessComponent } from './Components/ordersuccess/ordersuccess.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CartComponent } from './Components/cart/cart.component';
     GetallbooksComponent,
     QuickviewComponent,
     CartComponent,
+    OrdersuccessComponent,
   ],
   imports: [
     BrowserModule,

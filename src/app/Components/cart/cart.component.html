@@ -15,7 +15,7 @@
                         </mat-form-field>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-
+                <span *ngIf="cartList?.length<1" fxLayoutAlign="center center">Cart is Empty</span>
                 <div class="cartItem" *ngFor="let cart of cartList">
                     <div>
                         <img class="book-image" [src]="cart?.bookImage==('string'||''||null||undefined)? defaultImage : cart?.bookImage" width="110px" height="140px" 
@@ -48,7 +48,7 @@
                 <mat-expansion-panel-header  #panelH1 (click)="panelH1._toggle()">
                     <mat-panel-title><b>Customer Details</b></mat-panel-title>
                     <mat-panel-description>
-                        <button mat-stroked-button *ngIf="step>=1" style="color:#A03037; border:1px solid #A03037;">Add New Address</button>
+                        <button mat-stroked-button *ngIf="step>=1" style="color:#A03037; border:1px solid #A03037;" (click)="addNewAddress()">Add New Address</button>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
@@ -66,64 +66,77 @@
                         </mat-form-field>
                     </div>
                 </div>
-                <!-- <form class="address" [formGroup]="registerForm" (ngSubmit)="onSubmit()"> -->
-                <div *ngFor="let address of addressList">
-                    <div fxLayout="row">
-                        <input type="radio" checked class="addresstype" [name]="address" [id]="address" [(ngModel)]="addressId" [value]="address.addressId" >
+                
+                <div *ngIf="isAddEditAddress==false">
+                <div *ngFor="let address of addressList" style="margin-bottom: 10px;" >
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                        <input type="radio" class="addresstype" [name]="address" [id]="address.addressId" [(ngModel)]="addressId" [value]="address.addressId" (click)="showAddress=address.addressId">
                         <span><b>{{addressList.indexOf(address)+1}}{{address.typeId==1? '. HOME' : address.typeId==2? '. WORK' : '. OTHER'}}</b></span>
-                    </div><br>
-
-                    <div fxLayout="column" style="width: 100%;">
-                        <mat-label>Address</mat-label>
-                        <textarea matInput placeholder="Enter your Address" class="textarea-address" [(ngModel)]="address.address" cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5" required></textarea>
+                        <button mat-flat-button style="color:#A03037; margin-left: 20px;" (click)="editAddress(address.addressId)">Edit</button>
                     </div>
 
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-label style="margin-left: 20px;"><b>Address</b></mat-label>
+                    <div fxLayout="column" style="width: 100%; margin-left: 20px" *ngIf="showAddress!=address.addressId">
+                        <span>{{address.address}}</span> 
+                        <span>{{address.city}}, {{address.state}}</span>
+                    </div>
+                    <textarea matInput placeholder="Enter your Address" class="textarea-address" [(ngModel)]="address.address" style="margin-top: 10px;" cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5" disabled *ngIf="showAddress==address.addressId"></textarea>
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="showAddress==address.addressId">
                         <div fxLayout="column" style="width: 48%;">
                             <mat-label>City</mat-label>
                             <mat-form-field appearance="outline">
-                                <input matInput placeholder="City" [(ngModel)]="address.city" required>
+                                <input matInput placeholder="City" [(ngModel)]="address.city" disabled>
                             </mat-form-field>
                         </div>
                         <div fxLayout="column" style="width: 48%;">
                             <mat-label>State</mat-label>
                             <mat-form-field appearance="outline">
-                                <input matInput placeholder="State" [(ngModel)]="address.state" required>
+                                <input matInput placeholder="State" [(ngModel)]="address.state" disabled>
                             </mat-form-field>
                         </div>
                     </div>
                 </div>
+                </div>
 
-                <!-- <div *ngFor="let address of addressList">
+                <div fxLayout="column" *ngIf="isAddEditAddress==true">
                     <div fxLayout="row">
-                        <input type="radio" checked class="addresstype" [name]="address" [id]="address" [(ngModel)]="addressId" [value]="address.addressId" >
-                        <span><b>{{addressList.indexOf(address)+1}}{{address.typeId==1? '. HOME' : address.typeId==2? '. WORK' : '. OTHER'}}</b></span>
+                        <!-- <input type="radio" checked class="addresstype" [name]="address" [id]="address" [(ngModel)]="addressId" [value]="address.addressId" > -->
+                        <span><b>{{addressObj?.typeId==1? 'Address type : HOME' : addressObj?.typeId==2? 'Address type : WORK' : 'Address type : OTHER'}}</b></span>
                     </div><br>
 
                     <div fxLayout="column" style="width: 100%;">
                         <mat-label>Address</mat-label>
-                        <textarea matInput placeholder="Enter your Address" class="textarea-address" [(ngModel)]="address.address" cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5" required></textarea>
+                        <textarea matInput placeholder="Enter your Address" class="textarea-address" [(ngModel)]="address" cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5" required></textarea>
                     </div>
 
                     <div fxLayout="row" fxLayoutAlign="space-between center">
                         <div fxLayout="column" style="width: 48%;">
                             <mat-label>City</mat-label>
                             <mat-form-field appearance="outline">
-                                <input matInput placeholder="City" [(ngModel)]="address.city" required>
+                                <input matInput placeholder="City" [(ngModel)]="city" >
                             </mat-form-field>
                         </div>
                         <div fxLayout="column" style="width: 48%;">
                             <mat-label>State</mat-label>
                             <mat-form-field appearance="outline">
-                                <input matInput placeholder="State" [(ngModel)]="address.state" required>
+                                <input matInput placeholder="State" [(ngModel)]="state" >
                             </mat-form-field>
                         </div>
                     </div>
-                </div> -->
-                
-                <!-- </form> -->
+                    <mat-radio-group aria-label="Select an option" fxLayout="row" fxLayoutAlign="space-around center">
+                        <mat-radio-button name="type" ngDefaultControl id="1" [checked]="addressType==1" [(ngModel)]="addressType" value="1">Home</mat-radio-button>
+                        <mat-radio-button name="type" ngDefaultControl id="2" [checked]="addressType==2" [(ngModel)]="addressType" value="2">Work</mat-radio-button>
+                        <mat-radio-button name="type" ngDefaultControl id="3" [checked]="addressType==3" [(ngModel)]="addressType" value="3">Other</mat-radio-button>
+                      </mat-radio-group><br>
+                    <div fxLayoutAlign="space-between center">
+                        <button mat-stroked-button (click)="isAddEditAddress = false">Cancel</button>
+                        <button mat-flat-button color="primary" type="submit" (click)="updateAddress(addressObj.addressId)" *ngIf="addressObj?.addressId>0">Update</button>
+                        <button mat-flat-button color="primary" type="submit" (click)="addAddress()" *ngIf="addressObj?.length == 0">Add Address</button>
+                    </div>
+                </div>
                   
-                <mat-action-row>
+                <mat-action-row *ngIf="isAddEditAddress == false">
                     <button mat-stroked-button (click)="step0()">Previous</button>
                     <button mat-flat-button color="primary" type="submit" (click)="step2(addressId)">Continue</button>
                 </mat-action-row>
@@ -153,7 +166,7 @@
 
                 <mat-action-row>
                     <button mat-stroked-button (click)="step1()">Previous</button>
-                    <button mat-flat-button color="primary">Checkout</button>
+                    <button mat-flat-button color="primary" (click)="addOrder()">Checkout</button>
                 </mat-action-row>
             </mat-expansion-panel>
         </div>
