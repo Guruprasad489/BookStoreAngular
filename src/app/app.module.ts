@@ -24,6 +24,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 import { SignupComponent } from './Components/signup/signup.component';
@@ -47,7 +49,7 @@ import { CartComponent } from './Components/cart/cart.component';
     DashboardComponent,
     GetallbooksComponent,
     QuickviewComponent,
-    CartComponent
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,9 @@ import { CartComponent } from './Components/cart/cart.component';
     MatMenuModule,
     MatSelectModule,
     MatDividerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatBadgeModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

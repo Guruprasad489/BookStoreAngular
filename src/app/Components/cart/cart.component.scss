@@ -101,3 +101,22 @@ mat-expansion-panel{
   margin-top: -80px;
   margin-left: 5px;
 }
+
+.address{
+  width: 80%;
+}
+input.mat-input-element {
+  margin-bottom: 7px;
+}
+.textarea-address{
+  overflow: hidden; 
+  resize: none !important; 
+  word-wrap: break-word; 
+  border: 1px solid lightgray; 
+  padding: 10px; 
+  width: calc((100%) - 20px); 
+  margin-bottom: 20px; 
+  border-radius: 4px;
+}
+
+

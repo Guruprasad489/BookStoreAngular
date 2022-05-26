@@ -5,12 +5,12 @@
 
             <mat-expansion-panel [expanded]="true" (opened)="setStep(0)" hideToggle>
                 <mat-expansion-panel-header  #panelH (click)="panelH._toggle()">
-                    <mat-panel-title>My Cart({{cartList?.length}})</mat-panel-title>
+                    <mat-panel-title><b>My Cart({{cartList?.length}})</b></mat-panel-title>
                     <mat-panel-description>
                         <mat-form-field appearance="outline" style="margin-bottom: -15px;">
                             <mat-label style="font-size: 13px;">Bridgelabz Solution LLP</mat-label>
                             <mat-select>
-                                <!-- <mat-option></mat-option> -->
+                                <mat-option>Bridgelabz Solution LLP</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </mat-panel-description>
@@ -18,61 +18,141 @@
 
                 <div class="cartItem" *ngFor="let cart of cartList">
                     <div>
-                        <img class="book-image" [src]="cart?.bookImage==('string'||''||null||undefined)? defaultImage : cart?.bookImage" width="110px" height="140px">
+                        <img class="book-image" [src]="cart?.bookImage==('string'||''||null||undefined)? defaultImage : cart?.bookImage" width="110px" height="140px" 
+                        [style.opacity]="cart?.stock==0 ? .4 : 1">
                         <span class="outOfStock" *ngIf="cart?.stock==0">OUT OF STOCK</span>
                     </div>
                     <div class="book-details" fxLayout="column" fxLayoutAlign="start start">
                         <h3 class="bookName">{{cart?.bookName}}</h3>
                         <span class="author">by {{cart?.author}}</span>
-                        <div fxLayout="row" style="margin-bottom: 10px;">
-                            <div><span class="discountPrice">Rs. {{cart?.discountPrice * cart.booksQty}}</span></div>
-                            <div><span class="actualPrice">Rs. {{cart?.actualPrice * cart.booksQty}}</span></div>
-                            <!-- <div><span class="discount">{{((cart?.actualPrice-cart?.discountPrice)/cart?.actualPrice)*100 | number:'1.1-1'}}% off</span></div> -->
+                        <div fxLayout="row" fxLayout.lt-sm="column" style="margin-bottom: 10px;">
+                            <div><span class="discountPrice">Rs. {{cart?.discountPrice * cart.booksQty | number:'1.2-2'}}</span></div>
+                            <div><span class="actualPrice">Rs. {{cart?.actualPrice * cart.booksQty | number:'1.2-2'}}</span></div>
+                            <div><span class="discount">{{((cart?.actualPrice-cart?.discountPrice)/cart?.actualPrice)*100 | number:'1.1-1'}}% off</span></div>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="start center">
                             <button mat-stroked-button mat-icon-button (click)="decreaseQty(cart.cartId, cart.booksQty)" [disabled]="cart.booksQty==1"><i class="material-icons">&#xe15b;</i></button>
                             <span class="cartQty">{{cart.booksQty}}</span>
                             <button mat-stroked-button mat-icon-button (click)="increaseQty(cart.cartId, cart.booksQty)" [disabled]="cart.booksQty==10"><i class="material-icons">&#xe145;</i></button>
-                            <button mat-stroked-button color="warn" (click)="removeFromCart(cart.cartId)" style="margin-left: 25px;"><i class="material-icons">&#xe14c;</i> Remove</button>
+                            <button mat-stroked-button color="warn" (click)="removeFromCart(cart.cartId)" style="margin-left: 25px;"> Remove</button>
                         </div>
                     </div>
                 </div>
                 <mat-action-row>
                     <button mat-flat-button color="primary" (click)="step1()">Place Order</button>
                 </mat-action-row>
-            </mat-expansion-panel>
-            <br>
-        
+            </mat-expansion-panel><br>
+            
+<!-- Customer Details -->
             <mat-expansion-panel [expanded]="step >= 1"  hideToggle>
                 <mat-expansion-panel-header  #panelH1 (click)="panelH1._toggle()">
-                    <mat-panel-title>Customer Details</mat-panel-title>
+                    <mat-panel-title><b>Customer Details</b></mat-panel-title>
                     <mat-panel-description>
-                        <button mat-stroked-button style="color:brown">Add New Address</button>
+                        <button mat-stroked-button *ngIf="step>=1" style="color:#A03037; border:1px solid #A03037;">Add New Address</button>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
-                <mat-form-field appearance="fill">
-                    <mat-label>Country</mat-label>
-                    <input matInput>
-                </mat-form-field>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div fxLayout="column" style="width: 48%;">
+                        <mat-label>Full Name</mat-label>
+                        <mat-form-field appearance="outline">
+                            <input matInput [(ngModel)]="fullName" disabled>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="column" style="width: 48%;">
+                        <mat-label>Mobile Number</mat-label>
+                        <mat-form-field appearance="outline">
+                            <input matInput [(ngModel)]="mobileNumber" disabled>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- <form class="address" [formGroup]="registerForm" (ngSubmit)="onSubmit()"> -->
+                <div *ngFor="let address of addressList">
+                    <div fxLayout="row">
+                        <input type="radio" checked class="addresstype" [name]="address" [id]="address" [(ngModel)]="addressId" [value]="address.addressId" >
+                        <span><b>{{addressList.indexOf(address)+1}}{{address.typeId==1? '. HOME' : address.typeId==2? '. WORK' : '. OTHER'}}</b></span>
+                    </div><br>
 
+                    <div fxLayout="column" style="width: 100%;">
+                        <mat-label>Address</mat-label>
+                        <textarea matInput placeholder="Enter your Address" class="textarea-address" [(ngModel)]="address.address" cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5" required></textarea>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column" style="width: 48%;">
+                            <mat-label>City</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="City" [(ngModel)]="address.city" required>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="column" style="width: 48%;">
+                            <mat-label>State</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="State" [(ngModel)]="address.state" required>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div *ngFor="let address of addressList">
+                    <div fxLayout="row">
+                        <input type="radio" checked class="addresstype" [name]="address" [id]="address" [(ngModel)]="addressId" [value]="address.addressId" >
+                        <span><b>{{addressList.indexOf(address)+1}}{{address.typeId==1? '. HOME' : address.typeId==2? '. WORK' : '. OTHER'}}</b></span>
+                    </div><br>
+
+                    <div fxLayout="column" style="width: 100%;">
+                        <mat-label>Address</mat-label>
+                        <textarea matInput placeholder="Enter your Address" class="textarea-address" [(ngModel)]="address.address" cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5" required></textarea>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column" style="width: 48%;">
+                            <mat-label>City</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="City" [(ngModel)]="address.city" required>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="column" style="width: 48%;">
+                            <mat-label>State</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="State" [(ngModel)]="address.state" required>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div> -->
+                
+                <!-- </form> -->
+                  
                 <mat-action-row>
-                    <button mat-button color="warn" (click)="step0()">Previous</button>
-                    <button mat-flat-button color="primary" (click)="step2()">Continue</button>
+                    <button mat-stroked-button (click)="step0()">Previous</button>
+                    <button mat-flat-button color="primary" type="submit" (click)="step2(addressId)">Continue</button>
                 </mat-action-row>
-            </mat-expansion-panel>
-            <br>
+            </mat-expansion-panel><br>
             
+<!-- Order Summary -->            
             <mat-expansion-panel [expanded]="step === 2"  hideToggle>
                 <mat-expansion-panel-header #panelH2 (click)="panelH2._toggle()">
-                    <mat-panel-title >Order Summary</mat-panel-title>
-                    <mat-panel-description>
-                        
-                    </mat-panel-description>
+                    <mat-panel-title><b>Order Summary</b></mat-panel-title>
+                    <mat-panel-description></mat-panel-description>
                 </mat-expansion-panel-header>
 
+                <div class="cartItem" *ngFor="let cart of cartList">
+                    <div>
+                        <img class="book-image" [src]="cart?.bookImage==('string'||''||null||undefined)? defaultImage : cart?.bookImage" width="110px" height="140px">
+                    </div>
+                    <div class="book-details" fxLayout="column" fxLayoutAlign="start start">
+                        <h3 class="bookName">{{cart?.bookName}}</h3>
+                        <span class="author">by {{cart?.author}}</span>
+                        <div fxLayout="row" style="margin-bottom: 10px;">
+                            <div><span class="discountPrice">Rs. {{cart?.discountPrice * cart.booksQty | number:'1.2-2'}}</span></div>
+                            <div><span class="actualPrice">Rs. {{cart?.actualPrice * cart.booksQty | number:'1.2-2'}}</span></div>
+                            <div><span class="discount">{{((cart?.actualPrice-cart?.discountPrice)/cart?.actualPrice)*100 | number:'1.1-1'}}% off</span></div>
+                        </div>
+                    </div>
+                </div>
+
                 <mat-action-row>
-                    <button mat-button color="warn" (click)="step1()">Previous</button>
+                    <button mat-stroked-button (click)="step1()">Previous</button>
                     <button mat-flat-button color="primary">Checkout</button>
                 </mat-action-row>
             </mat-expansion-panel>

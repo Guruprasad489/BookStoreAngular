@@ -7,7 +7,7 @@
         <div fxLayout="column" fxLayoutAlign="center center">
             <div fxLayout="row">
                 <img class="s-image" [src]="book?.bookImage==('string'||''||null||undefined)? defaultImage : book?.bookImage" width="30px" height="42px">
-                <div class="book-image">
+                <div class="book-image"  [style.opacity]="book?.quantity==0 ? .8 : 1">
                     <img [src]="book?.bookImage==('string'||''||null||undefined)? defaultImage : book?.bookImage" width="200px" height="270px">
                 </div>
             </div>
