@@ -9,6 +9,7 @@ import { OrderService } from 'src/app/Services/OrderServices/order.service';
 export class OrdersComponent implements OnInit {
   defaultImage = "https://res.cloudinary.com/guruprasad489/image/upload/v1653326452/BookStore/default_book_cover_2015_fiqpmu.jpg";
   orderList:any;
+  page: number = 1;
 
   constructor(private orderService : OrderService) { }
 
@@ -20,6 +21,7 @@ export class OrdersComponent implements OnInit {
     this.orderService.getAllOrders().subscribe((response: any) => {
       console.log("GetAll Orders successful", response);
       this.orderList = response.data;
+      this.orderList = this.orderList.reverse();
     });
   }
 }

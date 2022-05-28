@@ -2,7 +2,7 @@
     <div fxLayout="row">
         <span class="home" routerLink="/home">Home / </span><span style="color: black; font-weight: 500;"> My Orders</span>
     </div>
-    <div class="orderItem" *ngFor="let order of orderList" fxLayoutAlign="space-between center">
+    <div class="orderItem" *ngFor="let order of orderList | paginate: { itemsPerPage: 10, currentPage: page}" fxLayoutAlign="space-between center">
         <div fxLayout="row">
             <div>
                 <img class="book-image" [src]="order?.bookImage==('string'||''||null||undefined)? defaultImage : order?.bookImage" width="90px" height="110px">
@@ -18,4 +18,5 @@
         </div>
         <span><i class="material-icons" style="font-size:10px;color:green">fiber_manual_record</i><b> Order Placed on {{order?.orderDate}}</b></span>
     </div>
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>

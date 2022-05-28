@@ -16,7 +16,7 @@
     </div>
 
     <div class="display-books">
-        <mat-card class="book" *ngFor="let book of bookList | filter : searchString" [style.background]="book.quantity==0? '#e9ecef' : 'white'" [style.opacity]="book?.quantity==0 ? .8 : 1">
+        <mat-card class="book" *ngFor="let book of bookList | filter : searchString | paginate: { itemsPerPage: 4, currentPage: page}" [style.background]="book.quantity==0? '#e9ecef' : 'white'" [style.opacity]="book?.quantity==0 ? .8 : 1">
             <div class="book-image" fxLayout="column" fxLayoutAlign="center center" [style.background]="book.quantity==0? '#dee2e6' : '#F5F5F5'" (click)="quickView(book.bookId)">
                 <img [src]="book.bookImage==('string'||''||null||undefined)? defaultImage : book.bookImage" width="125px" height="170px">
                 <span class="outOfStock" *ngIf="book.quantity==0">OUT OF STOCK</span>
@@ -46,10 +46,6 @@
             </div> -->
     
         </mat-card>
-        <!-- <mat-paginator [length]="bookList?.length"
-                  [pageSize]="4"
-                  [pageSizeOptions]="[5, 10, 25]"
-                  aria-label="Select page">
-        </mat-paginator> -->
     </div>
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>

@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-// import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { BookService } from 'src/app/Services/BookService/book.service';
 import { DataService } from 'src/app/Services/DataService/data.service';
@@ -14,8 +13,7 @@ export class GetallbooksComponent implements OnInit {
   defaultImage= "https://res.cloudinary.com/guruprasad489/image/upload/v1653326452/BookStore/default_book_cover_2015_fiqpmu.jpg";
   sortBy:any="Sort by relevence";
   searchString:any;
-
-  // @ViewChild(MatPaginator) paginator : MatPaginator;
+  page: number = 1;
 
   constructor(private bookService : BookService, private router:Router, private dataService: DataService) { }
 

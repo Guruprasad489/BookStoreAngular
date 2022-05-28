@@ -26,7 +26,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatRadioModule} from '@angular/material/radio';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 import { SignupComponent } from './Components/signup/signup.component';
@@ -91,7 +91,7 @@ import { NonuserComponent } from './Components/nonuser/nonuser.component';
     MatExpansionModule,
     MatBadgeModule,
     MatRadioModule,
-    MatPaginatorModule
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
