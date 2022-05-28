@@ -19,22 +19,28 @@
                 </div>
                 <mat-menu #profile="matMenu" >
                     <span class="profile"><b>Hello {{fullName}},</b></span>
-                    <div class="profile-g"><img src="/assets/person-g.svg" width="20px" height="20px"><span>Profile</span></div>
-                    <div class="profile-g"><img src="/assets/orders-gray.svg" width="18px" height="18px"><span>My Orders</span></div>
-                    <div class="profile-g"><img src="/assets/favorite-gray.svg" width="20px" height="20px"><span>My Wishlist</span></div>
-                    <button class="logout" mat-stroked-button color="warn" (click)="logOut()">Logout</button>
+                    <button mat-flat-button class="profile-g" style="padding-left: 0px;" routerLink="/home/profile"><img src="/assets/person-g.svg" width="20px" height="20px"><span>Profile</span></button>
+                    <button mat-flat-button class="profile-g" style="padding-left: 0px;" routerLink="/home/orders"><img src="/assets/orders-gray.svg" width="18px" height="18px"><span>My Orders</span></button>
+                    <button mat-flat-button class="profile-g" style="padding-left: 0px;" routerLink="/home/wishlist"><img src="/assets/favorite-gray.svg" width="20px" height="20px"><span>My Wishlist</span></button>
+                    <button class="logout" mat-stroked-button color="warn" style="margin-right: 50px;" (click)="logOut()">Logout</button>
                 </mat-menu>
                 <mat-menu #noprofile="matMenu" >
                     <span class="profile"><b>Welcome</b></span>
                     <div class="profile-g"><span>To acsess account and manage orders</span></div>
                     <button class="login" mat-stroked-button color="warn" (click)="login()">LOGIN/SIGNUP</button>
                     <hr class="profile-g">
-                    <div class="profile-g"><img src="/assets/orders-gray.svg" width="18px" height="18px"><span>My Orders</span></div>
-                    <div class="profile-g"><img src="/assets/favorite-gray.svg" width="20px" height="20px"><span>My Wishlist</span></div>
+                    <button mat-flat-button class="profile-g" style="padding-left: 0px;" routerLink="/home/nonuser"><img src="/assets/orders-gray.svg" width="18px" height="18px" ><span>My Orders</span></button>
+                    <button mat-flat-button class="profile-g" style="padding-left: 0px;" routerLink="/home/nonuser"><img src="/assets/favorite-gray.svg" width="20px" height="20px" ><span>My Wishlist</span></button>
                 </mat-menu>
             </button>
 
-            <button class="icons" mat-flat-button routerLink="/home/cart" >
+            <button class="icons" mat-flat-button routerLink="/home/cart" *ngIf="fullName!=(''||undefined||null)">
+                <div fxLayout="column" fxLayoutAlign="center center" >
+                    <img src="/assets/cart.svg" style="margin: 0px 10px;" width="24px" height="24px">
+                    <span fxLayoutAlign="center center" >Cart</span>
+                </div>
+            </button>
+            <button class="icons" mat-flat-button routerLink="/home/nonuser" *ngIf="fullName==(''||undefined||null)">
                 <div fxLayout="column" fxLayoutAlign="center center" >
                     <img src="/assets/cart.svg" style="margin: 0px 10px;" width="24px" height="24px">
                     <span fxLayoutAlign="center center" >Cart</span>

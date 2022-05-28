@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+// import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AddressService } from 'src/app/Services/AddressServices/address.service';
@@ -22,17 +22,16 @@ export class CartComponent implements OnInit {
   addressId = 0;
   addressObj:any;
   isAddEditAddress:boolean=false;
-  showAddress:any;
+  continue:boolean=false;
 
   address:any;
   city:any;
   state:any;
   addressType:any
 
-  // addressForm!: FormGroup;
 
   constructor(private cartService: CartService, private addressService: AddressService, private orderService: OrderService,
-    private _snackBar: MatSnackBar, private formBuilder: FormBuilder, private router: Router) {
+    private _snackBar: MatSnackBar, private router: Router) {
     this.fullName = localStorage.getItem('name');
     this.mobileNumber = localStorage.getItem('mobile');
   }
@@ -50,6 +49,7 @@ export class CartComponent implements OnInit {
     this.step = 0;
   }
   step1() {
+    this.continue = false;
     if (this.cartList?.length > 0) {
       this.checkStock = this.cartList.every((object: any) => {
         return object.stock != 0;
@@ -67,8 +67,14 @@ export class CartComponent implements OnInit {
     }
   }
   step2(addressId: any) {
-    console.log("selected address :" + addressId)
-    this.step = 2;
+    //console.log("selected address :" + addressId)
+    if (this.cartList?.length > 0) {
+      this.step = 2;
+      this.continue = true;
+    }
+    else{
+      this.step = 0;
+    }
   }
 
   getAllCart() {
@@ -103,7 +109,7 @@ export class CartComponent implements OnInit {
         this.getAllCart();
       }
       else {
-        window.location.reload();
+        this.cartList = [];
       }
     });
   }
@@ -151,12 +157,12 @@ export class CartComponent implements OnInit {
   //   });
   // }
 
-  onSubmit() {
+  // onSubmit() {
 
-  }
+  // }
 
   addAddress(){
-    if(this.address && this.city && this.state && this.addressType != null && '' && undefined){
+    if(this.address && this.city && this.state && this.addressType != ''){
       let reqData = {
         address: this.address,
         city: this.city,
@@ -183,7 +189,7 @@ export class CartComponent implements OnInit {
   }
 
   updateAddress(addressId:any){
-    if(this.address && this.city && this.state && this.addressType && addressId != null && '' && undefined){
+    if(this.address && this.city && this.state && this.addressType && addressId != ''){
       let reqData = {
         address: this.address,
         city: this.city,
@@ -225,16 +231,25 @@ export class CartComponent implements OnInit {
   // }
 
   addOrder() {
-    this.orderService.addOrder(this.addressId).subscribe((response: any) => {
-      console.log("Order placed successfully", response);
-      this.router.navigateByUrl('/home/order-success');
+    if (this.cartList?.length > 0) {
+      this.orderService.addOrder(this.addressId).subscribe((response: any) => {
+        console.log("Order placed successfully", response);
+        this.router.navigateByUrl('/home/order-success');
 
-      this._snackBar.open('Order Placed successfully', '', {
+        this._snackBar.open('Order Placed successfully', '', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          panelClass: ['snackbar-green']
+        })
+      })
+    }
+    else{
+      this.step = 0;
+      this._snackBar.open('No items to order', '', {
         duration: 3000,
         verticalPosition: 'bottom',
-        panelClass: ['snackbar-green']
       })
-    })
+    }
   }
 
 }

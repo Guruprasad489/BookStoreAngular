@@ -3,5 +3,45 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    min-height: 80vh;
 }
+
+.message{
+    width: 354px;
+    height: 66px;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 0px;
+    color: #333232;
+    margin: 20px 0px;
+}
+
+.table{
+    color: #333232;
+    width: 70%;
+    min-width: 400px;
+    max-width: 650px;
+    border-collapse: collapse;
+}
+
+tr {
+    border: 2px solid #dddddd;
+  }
+
+th {
+    padding: 8px;
+    min-width: 108px;
+  }
+
+td {
+    border: 2px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  @media (max-width: 700px) {
+      .table{
+          width: 90%;
+      }
+      
+  }

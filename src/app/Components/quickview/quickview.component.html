@@ -1,6 +1,6 @@
 <div class="layout">
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-        <span class="home">Home / <span style="color: black; font-weight: 500;">Book({{book?.bookId | number:'2.0-0'}})</span></span>
+    <div fxLayout="row">
+        <span class="home" routerLink="/home">Home / </span><span style="color: black; font-weight: 500;">Book({{book?.bookId | number:'2.0-0'}})</span>
     </div>
 
     <div class="display-book">
@@ -15,7 +15,7 @@
             <div fxLayoutAlign="space-between center" class="buttons">
                 <button class="bag" mat-flat-button (click)="addToCart()" *ngIf="book?.quantity!=0">ADD TO BAG</button>
                 <button class="bag" mat-flat-button (click)="notifyMe()" *ngIf="book?.quantity==0">NOTIFY ME</button>
-                <button class="wishlist" mat-flat-button><img src="/assets/favorite_white_24dp.svg" width="18px" height="18px" style="margin-bottom: 2px;" (click)="addToWishlist()"> WISHLIST</button>
+                <button class="wishlist" mat-flat-button (click)="addToWishlist()"><img src="/assets/favorite_white_24dp.svg" width="18px" height="18px" style="margin-bottom: 2px;"> WISHLIST</button>
             </div>
         </div>
 

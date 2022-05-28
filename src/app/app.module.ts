@@ -26,6 +26,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 import { SignupComponent } from './Components/signup/signup.component';
@@ -38,6 +39,12 @@ import { GetallbooksComponent } from './Components/getallbooks/getallbooks.compo
 import { QuickviewComponent } from './Components/quickview/quickview.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { OrdersuccessComponent } from './Components/ordersuccess/ordersuccess.component';
+import { OrdersComponent } from './Components/orders/orders.component';
+import { WishlistComponent } from './Components/wishlist/wishlist.component';
+import { ProfileComponent } from './Components/profile/profile.component';
+
+import { FilterPipe } from './Pipes/filter.pipe';
+import { NonuserComponent } from './Components/nonuser/nonuser.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +59,11 @@ import { OrdersuccessComponent } from './Components/ordersuccess/ordersuccess.co
     QuickviewComponent,
     CartComponent,
     OrdersuccessComponent,
+    OrdersComponent,
+    WishlistComponent,
+    ProfileComponent,
+    FilterPipe,
+    NonuserComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +90,8 @@ import { OrdersuccessComponent } from './Components/ordersuccess/ordersuccess.co
     MatDividerModule,
     MatExpansionModule,
     MatBadgeModule,
-    MatRadioModule
+    MatRadioModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,47 @@
+.layout{
+    padding-bottom: 20px;
+    padding-left: 12%;
+    // padding-right: 40%;
+    width: 500px;
+    margin-top: 5px;
+}
+.home{
+    margin-left: -20px;
+    margin-bottom: 10px;
+}
+.profile{
+    margin-bottom: 20px;
+}
+  
+.profile div{
+    width: 100%;
+    margin-bottom: -10px;
+}
+
+// .addressbox{
+//     border: 1px solid lightgray;
+//     padding: 20px;
+//     border-radius: 5px;
+// }
+
+input.mat-input-element {
+    margin-bottom: 7px;
+}
+  
+.textarea-address{
+    overflow: hidden; 
+    resize: none !important; 
+    word-wrap: break-word; 
+    border: 1px solid lightgray; 
+    padding: 10px; 
+    width: calc((100%) - 20px); 
+    margin-bottom: 20px; 
+    border-radius: 4px;
+}
+  
+.type{
+    margin: 10px 0px;
+}
+.type mat-radio-button{
+    margin: 0px 50px 0px 0px;
+}

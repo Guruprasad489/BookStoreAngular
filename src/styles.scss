@@ -10,4 +10,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 ::ng-deep .snackbar-green{
     background-color:#72d18b;
     color: black;
+    text-align: center;
 }
+// ::ng-deep .mat-snack-bar-container {
+//     width: 100px;
+// }
