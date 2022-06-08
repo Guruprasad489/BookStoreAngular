@@ -35,7 +35,7 @@ const routes: Routes = [
   ]
 },
   
-  {path: '', redirectTo: '/home/books', pathMatch: 'full'},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
 ];
 
