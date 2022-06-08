@@ -2,7 +2,7 @@
     <div fxLayout="row" fxLayoutAlign="space-between center">   
         <div fxLayout="row" fxLayoutAlign="start center" class="bookHead">
             <span style="font-size: 22px; font-weight: 500;">Books</span>
-            <span class="booksCount">({{bookList?.length}} items)</span>
+            <span class="booksCount">({{bookList?.length==(null || undefined) ? '0' : bookList?.length}} items)</span>
         </div>
         <mat-form-field appearance="outline">
             <mat-label>{{sortBy}}</mat-label>
